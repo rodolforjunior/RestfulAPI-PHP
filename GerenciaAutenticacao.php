@@ -46,7 +46,6 @@ class GerenciaAutenticacao
 
         $preparaTokenVerif = $this->conn->prepare($sql);
         $preparaTokenVerif->bindParam(":t",  $t, PDO::PARAM_STR);
-        // $preparaTokenVerif->bindParam(":s",  $s, PDO::PARAM_STR);
 
         $preparaTokenVerif->execute();
 
