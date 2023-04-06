@@ -93,10 +93,7 @@ class GerenciaRequests
                                     throw new Exception("Usuario " . $dados['nome'] . " cadastrado", 201);
                                 }
                             } 
-                            // else if (!$resposta) {
-                            //     var_dump("hm");
-                            //     http_response_code(500);
-                            // }
+                
                         }
                     } catch (Exception $e) {
                         echo json_encode([
