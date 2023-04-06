@@ -4,8 +4,10 @@ API escrita em PHP sem utilização de frameworks com autenticação utilizando 
 
 O que é ainda preciso fazer?
 
-[] - Rever as queries, implementar statements PDO para evitar SQLi.
+[ ] - Rever as queries, implementar statements PDO para evitar SQLi.
 
-[] - Atualizar a validação de senha, foi removido uma função específica com consulta a API externa por motivos de praticidade.
+[ ] - Atualizar a validação de senha, foi removido uma função específica com consulta a API externa por motivos de praticidade.
 
-[] - Atualizar campos e rever alterações.
+[ ] - Atualizar campos e rever alterações.
+
+[ ] - Documentação + passo-passo.
