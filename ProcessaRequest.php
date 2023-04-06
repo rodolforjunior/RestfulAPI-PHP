@@ -66,48 +66,7 @@ class ProcessaRequest
         }
     }
 
-    public function validaPassword($dados, $minTimes = 30)
-    {
-        $isPasswordValid = true;
-        $senha = substr(sha1($dados['senha']), 0, 5);
-        $comparaSenha = sha1($dados['senha']);
-        $comparaSenha = substr($comparaSenha, -20);
-
-        try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://api.pwnedpasswords.com/range/" . $senha);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $resposta = curl_exec($ch);
-
-            if (curl_errno($ch)) {
-                http_response_code(500);
-                throw new Exception("Erro ao acessar a API \n" . curl_error($ch). "\n Contate o administrador.\n", 500);
-            } else {
-
-                $fetchedResposta = explode(PHP_EOL, $resposta);
-
-                for ($i = 0; $i < count($fetchedResposta); $i++) {
-
-                    $objDados = explode(":", $fetchedResposta[$i]);
-                    $stringTeste = substr($objDados[0], -20); //Atribuindo os 10 últimos caracteres do SHA1 para a variável res para comparar com a var (if (compare...)) durante a iteração      
-
-                    if ((strtolower($comparaSenha) == strtolower($stringTeste) && $objDados[1] > $minTimes)) {
-                        $isPasswordValid = false;
-                        http_response_code(403);
-                        throw new Exception("Atenção! Sua senha já foi exposta em vazamentos de dados mais de " . $objDados[1] . " vezes. Defina uma nova senha", 403);
-                    }
-                }
-            }
-            if ($isPasswordValid) {
-                return true;
-            }
-        } catch (Exception $e) {
-            echo json_encode([
-                "Mensagem" => $e->getMessage(),
-                "Status" => $e->getCode()
-            ]);
-        }
-    }
+    
     public function update($dados)
     {
         $id = intval($dados['id']);
