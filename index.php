@@ -63,7 +63,7 @@ try {
         "Status" => $e->getCode(),
      
     ]);
-    exit();
+    die();
 }
 
 $procReq = new ProcessaRequest($banco);  //Criando objeto ProcessaRequest e passando o banco como args. A classe ProcessaRequest contém as funções da API
